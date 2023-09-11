@@ -1,0 +1,85 @@
+
+{% extends 'main/base.html' %}
+
+{% block title %} specialist information {% endblock%}
+
+{% block content %}
+
+<h2>Register</h2>
+<div class="row">
+    <div class="col">
+
+        <form action="{% url 'accounts:specialist_information_view' specialist.user.id %} "enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <div
+                class="d-flex flex-column gap-3 border border-1 shadow rounded-4 p-4 mt-1  h-100 justify-content-between">
+
+                <div class=" input-box">
+                    <input type="text" name="major" value="{{specialist.major}}" />
+                    <label>Major:</label>
+                </div>
+
+                <div class>
+                    {% if specialist.specialist_image %}
+                    <img src="{{specialist.specialist_image.url}}"
+                        class="rounded-circle" />
+                    {% endif%}
+                    <input type="file" name="specialist_image"
+                        accept="image/png, image/jpg" />
+                    <label>specialist image</label>
+                </div>
+
+
+                <div class=" input-box">
+                    <select name="gender" class="form-select">
+                        {% for value, title in SpecialistProfile.gender_choices %}
+                        <option value="{{value}}" {% if gender_choices.gender == value %} selected {% endif%}>{{title}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+
+                <div class=" input-box">
+                    <input type="text" name="phone_number"
+                        value="{{specialist.phone_number}}" />
+                    <label> Phone Number:</label>
+                </div>
+
+                <div class=" input-box">
+                    <input type="city" name="city" />
+                    <label> City</label>
+                </div>
+
+                <div class="input-box">
+                    <textarea name="education"></textarea>
+                    <label> Education</label>
+                </div>
+
+                <div class="input-box">
+                    <textarea name="experience"></textarea>
+                    <label> Experience:</label>
+                </div>
+
+                <div class=" input-box">
+                    <textarea type="text" name="description"></textarea>
+                    <label>description </label>
+                </div>
+
+                <div class=" input-box">
+                    <input type="url" name="linked_in" />
+                    <label> Linked in</label>
+                </div>
+
+                <input type="radio" id="accepted" name="accepted" value="True">
+                     <label for="accepted">I accept the rules of being a specialist</label>
+
+                <input type="submit" value="add informations"class="btn btn-primary mt-4" />
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

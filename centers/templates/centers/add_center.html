@@ -1,0 +1,49 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Add center {% endblock %}
+
+
+{% block content %}
+<div class="add-form">
+
+    <div class="row">
+
+        <div class="col">
+            <h2>Adding Center</h2>
+
+            <form  action="{% url 'centers:add_center_view' %}" method="post" enctype="multipart/form-data" class="d-flex flex-column gap-2 ">
+                {% csrf_token %} 
+                <label>Center Name: </label>
+                <input type="text" name="centerName" class="form-control" />
+
+                <label>Center city: </label>
+                <select name="city" class="form-select">
+                    {% for value, title in Center.city_choices %}
+                        <option value="{{value}}">{{title}}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Description: </label>
+                <textarea name="description" class="form-control"></textarea> 
+
+                <label>Content: </label>
+                <textarea name="content" class="form-control"></textarea> 
+
+
+                <label>Choose Image: </label>
+                <input type="file" name="image" class="form-control"/>
+
+
+                <label> Center location:</label>
+                <input type="url" name="location" class="form-control"/>
+
+                <div class="d-flex justify-content-center align-items-center">
+                <input type="submit" value="Add Center" style= "width:200px" class="btn btn-box"/>
+</div>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'main/base.html' %}
+
+
+{% block title %} centers {% endblock %}
+
+{% block content %}
+
+
+    <h1> centers</h1>
+
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            by city
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'centers:category_view' %}?Riyadh=True">Riyadh</a></li>
+            <li><a class="dropdown-item" href="{% url 'centers:category_view' %}?Jeddah=True">Jeddah</a></li>
+            <li><a class="dropdown-item" href="{% url 'centers:category_view' %}?Mecca=True">Mecca</a></li>
+            <li><a class="dropdown-item" href="{% url 'centers:category_view' %}?Khobar=True">Khobar</a></li>
+
+        </ul>
+      </div>
+
+
+
+    <div class="row">
+      {% for center in centers %}
+          <div class="col-4 mt-4">
+              <div class="d-flex flex-column gap-3 border border-1 shadow rounded-4 p-4 mt-1  h-100 justify-content-between">
+                  <img src="{{ center.image.url }}" class="rounded-4 object-fit-cover border border-1 book-poster" />
+                  <h3>{{ center.centerName}}</h3>
+                  <h6>{{ center.description }}</h6>
+                  <h6>{{ center.get_average }}</h6>
+            
+                 
+                  <div class="d-flex justify-content-between align-items-center">
+                
+                      <div class="d-flex gap-1 align-items-center">
+                          <h6 class="p-0 m-0"> {{center.city}}<br></h6>
+                          
+                        
+                      </div>
+                      
+                  </div>
+                  
+                  <a href="{% url 'centers:center_detail_view' center.id %}" class="d-flex justify-content-between text-decoration-none">
+                      <span class="material-symbols-outlined"> arrow_forward</span>
+                  </a>
+              </div>
+          </div>
+      
+      {% endfor %}
+      </div>
+
+{% endblock %}

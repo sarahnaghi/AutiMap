@@ -1,0 +1,118 @@
+
+        {% extends 'main/base.html' %}
+
+{% block title %} appointment {% endblock %}
+
+
+{% block content %}
+    <div class="row">
+
+        <div class="col">
+            <h2>Appoinment booking</h2>
+
+            <form  action="{% url 'specialists:appointment_booking_view' specialist.user.id%}" method="post" class="d-flex flex-column gap-2" id="request_form">
+                {% csrf_token %} 
+            
+        
+                <label>Description: </label>
+                <textarea name="Appointment_description" class="form-control"></textarea> 
+
+
+                <label> choose date </label>
+                <select id="date" name="date" class="form-select">
+                    {% for value, title in AppointmentBooking.date_choices %}
+                        <option value="{{value}}">{{title}}</option>
+                    {% endfor %}
+                </select>
+
+                <label>choose time </label>
+                <select  id="select_times" name="select_times" class="form-select">
+                    {% for value, title in AppointmentBooking.times_choices %}
+                        <option value="{{value}}">{{title}}</option>
+                    {% endfor %}
+                </select>
+
+                <input  data-bs-toggle="modal" data-bs-target="#appointment" value="book appointment" class="btn btn-primary"/>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="appointment">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Booking Details</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h1>Booking Details</h1>
+                <h6> Name: {{user.first_name}} {{user.last_name}}</h6>
+                <h6> Email: {{user.email}}</h6>
+                <h6> Date:
+                <span id="result"  placeholder="Text Entry." disabled="disabled"></span>
+            </h6>
+                <h6> Time:
+                <span id="timeresult"  placeholder="Text Entry." disabled="disabled"></span>
+                <span>am</span>
+            </h6>
+    
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button  onclick="submit_form()" class="btn btn-primary">confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script type="text/javascript">
+
+      function submit_form() {
+        document.getElementById('request_form').submit();
+        }
+
+        if ( document.addEventListener ) { 
+        this.addEvent = function(elem, type, fn) {
+            elem.addEventListener(type, fn, false);
+            return fn;
+        };
+    
+        this.removeEvent = function(elem, type, fn) {
+            elem.removeEventListener(type, fn, false);
+        };
+    } else if ( document.attachEvent ) { 
+        this.addEvent = function(elem, type, fn) {
+            var bound = function() {
+                return fn.apply(elem, arguments);
+            };
+            elem.attachEvent("on" + type, bound);
+            return bound;
+        };
+    
+        this.removeEvent = function (elem, type, fn) {
+            elem.detachEvent("on" + type, fn);
+        };
+    }
+    
+    
+    var date_input = document.getElementById('date');
+    date_input.onchange = function(){
+        document.getElementById("result").innerHTML = this.value; 
+    }
+    
+    
+    var time_input = document.getElementById('select_times');
+    time_input.onchange = function(){
+        document.getElementById("timeresult").innerHTML = this.value; 
+    }
+        </script>
+{% endblock %}
+
+
+
+ 
+
+

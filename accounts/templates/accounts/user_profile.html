@@ -1,0 +1,55 @@
+{% extends 'main/base.html'%}
+
+{% block title %} {{profile.user.username}} profile {% endblock %}
+
+{% block content %}
+
+<div class="container ">
+    <h1 class="sub-title">My<span> Requests</span></h1>
+    
+    <div class="row"><div class="col-sm-12"><table style="width: 100%;" id="example" class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid" aria-describedby="example_info">
+        <thead>
+       <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 160.2px;" 
+         aria-label="Name: activate to sort column descending" aria-sort="ascending">Center Name</th>
+        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 150.2px;" aria-label="Position: activate to sort column ascending">Date</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 5.2px;" aria-label="Office: activate to sort column ascending">Time</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 110.2px;" aria-label="Age: activate to sort column ascending">Location</th>
+        <tbody>
+        {% for tour in tours %}
+        <tr role="row" class="odd">
+        <td class=" dtr-control sorting_1 " tabindex="0">{{tour.center.centerName}}</td>
+        <td>{{tour.date}}</td>
+        <td>{{tour.times}}</td>
+        <td class=""> {{tour.center.location}}></a></td>
+
+        </tr>
+        {% endfor %}
+
+    </tbody>
+        </table></div></div>
+
+
+        <div class="row"><div class="col-sm-12"><table style="width: 100%;" id="example" class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid" aria-describedby="example_info">
+            <thead>
+           <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 160.2px;" 
+             aria-label="Name: activate to sort column descending" aria-sort="ascending">Specialist</th>
+             <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 150.2px;" aria-label="Position: activate to sort column ascending">Date</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 5.2px;" aria-label="Office: activate to sort column ascending">Time</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 110.2px;" aria-label="Age: activate to sort column ascending">Meeting link</th>
+             <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 110.2px;" aria-label="Age: activate to sort column ascending">Meeting password</th>
+              <tbody>
+            {% for appointment in appointments %}
+            <tr role="row" class="odd">
+            <td class=" dtr-control sorting_1 " tabindex="0">{{appointment.specialist.user.first_name}} {{appointment.specialist.user.last_name}}</td>
+            <td>{{appointment.date}}</td>
+            <td>{{appointment.times}} </td>
+            <td class=""><a href="{{appointment.zoom_url}}">Zoom Meeting Link</a></td>
+            <td class="">{{appointment.zoom_password}}</td>
+
+            </tr>
+            {% endfor %}
+    
+        </tbody>
+    
+            </table></div></div>
+
+</div>
+
+
+{% endblock %}

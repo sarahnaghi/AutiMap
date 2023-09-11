@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% block title %} User Log In {% endblock%}
+
+{% block content %}
+<div class="wrapper">
+    <div class="form-box login">
+        <h2>Log in</h2>
+        {% if msg %} 
+        <h5 class="text-white bg-danger p-3">{{msg}}</h5>
+        {% endif %}
+        <form action="{% url 'accounts:login_view' %}" method="post">
+            {% csrf_token %}
+            <div class=" input-box">
+                <span class="icon"><span class="material-symbols-outlined">person</span></span>
+                <input type="text" name="username"   />
+                <label>User Name</label>
+            </div>
+            <div class=" input-box">
+                <span class="icon"><span class="material-symbols-outlined">lock</span></span>
+                <input type="password" name="password"  />  
+                <label> Password</label>
+            </div>
+            <input type="submit" value="Login" class="btn" />
+            <div class="login-register">
+                <p>Don't have an account?<a href="{% url 'accounts:register_view' %}" class="register-link" style="color: blue;"> Register</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+        
+{% endblock %}

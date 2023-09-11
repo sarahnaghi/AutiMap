@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Update Game {{ book.title }} {% endblock %}
+
+
+{% block content %}
+    <div class="container ">
+        <div class="wrapper ">
+            <div class="form-box login"  >
+                <h2>Update Toys</h2>
+                <form  action="{% url 'games:toy_update_view' toy.id %}" method="post" enctype="multipart/form-data" class="d-flex flex-column gap-2">
+                    {% csrf_token %} 
+                        <div class=" input-box">
+                            <input type="text" name="game_name" value="{{ toy.game_name }}"/>
+                            <label>game_name: </label>
+                        </div>
+                        <div class=" input-area">
+                            <label>game_description: </label>
+                            <textarea name="game_description" >{{ toy.game_description }}</textarea> 
+                   
+                        </div>
+                        <div class=" imge-box">
+                            <label >Choose Image: </label>
+                            <img src="{{ game_image.image.url }}"  class="rounded-4 object-fit-cover book-poster-update w-50" />
+                            <input type="file" name="game_image" class="form-control"/>
+                        </div>   
+                        <div class=" input-box">
+                            <input type="text" name="game_url" value="{{ toy.game_url }}"/>
+                            <label>game_url: </label>
+                        </div>
+                                <div class="col-12 pt-3">
+                                    <button class="btn btn-primary" value="Add Server App" type="submit" >Submit form</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
