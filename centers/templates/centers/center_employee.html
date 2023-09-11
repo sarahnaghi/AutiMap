@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Add center {% endblock %}
+
+
+{% block content %}
+<div class="add-form">
+
+    <div class="row">
+
+        <div class="col">
+            <h2>Add employee</h2>
+
+            <form  action="{% url 'centers:center_employee_view' center.id %}" method="post" enctype="multipart/form-data" class="d-flex flex-column gap-2 ">
+                {% csrf_token %} 
+                <label>Employee Name: </label>
+                <input type="text" name="employees_names" class="form-control" />
+
+                <label>Choose Image: </label>
+                <input type="file" name="employee_image" class="form-control"/>
+
+
+                <input type="submit" value="Add employee" style= "width:200px" class="btn btn-box"/>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

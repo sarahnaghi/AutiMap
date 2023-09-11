@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+
+{% block title %} admin {% endblock %}
+{% block content %}
+
+    
+<div class="row">
+    <div class="col-sm-12">
+        <table style="width: 100%;" id="example" class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid" aria-describedby="example_info">
+            <thead>
+                <tr role="row">
+                    <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 160.2px;" aria-label="Name: activate to sort column descending" aria-sort="ascending">Name</th>
+                    <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 160.2px;" aria-label="Name: activate to sort column descending" aria-sort="ascending">Center Name</th>
+                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 150.2px;" aria-label="Position: activate to sort column ascending">Date</th>
+                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 20.2px;" aria-label="Office: activate to sort column ascending">Time</th>
+                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 110.2px;" aria-label="Age: activate to sort column ascending">Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tour in tours %}
+                <tr role="row" class="odd">
+                    <td>{{user.first_name }} {{user.last_name }}</td>
+                    <td>{{ tour.center.centerName }}</td>
+                    <td>{{ tour.date }}</td>
+                    <td>{{ tour.times }}</td>
+                    <td>{{ tour.center.location }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <h5>Add center <a href="{% url 'centers:add_center_view' %}">Add center</a>
+        <h5>Add game <a href="{% url 'games:add_game_apps_view' %}">Add game</a> , or <a href="{% url 'games:add_toy_view' %}">Add toy</a> </h5>
+
+
+
+</div>
+
+
+{% endblock %}

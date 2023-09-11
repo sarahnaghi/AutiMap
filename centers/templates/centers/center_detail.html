@@ -1,0 +1,196 @@
+{% extends 'main/base.html' %}
+
+{% block title %} center details {% endblock %}
+
+{% block content %}
+
+<div class="d-flex flex-column gap-2">
+    <h1>{{ center.centerName }}</h1>
+
+
+    <div class="row">
+        <div class="col-4"><img src="{{ center.image.url }}" class=" rounded-4 w-100" /></div>
+        <div class="col">
+            <div>
+                <p>{{ center.description }}</p>
+                <h3>{{center.content}}</h3>
+
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    <h4>{% for key, value in avg.items %}
+        Rating ({{value|floatformat:1}})</h4>
+        {% endfor %}
+
+    <div class="mt-4">
+
+        {% for review in reviews %}
+            <div class="d-flex flex-column gap-1 border border-1 rounded p-4 mt-3">
+                <h4>{{review.user.first_name}} {{review.user.last_name}}</h4>
+                <h6>{{ review.content }}</h6>
+
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-6">
+
+
+            <form action="{% url 'centers:center_detail_view' center.id %}" method="post"  enctype="multipart/form-data" >
+                {% csrf_token %}
+                <textarea  class="form-control mt-2" name="content"  placeholder="content"></textarea>
+
+                <label>Rating: </label>
+                <select name="rating" class="form-select">
+                    {% for value, title in Review.rating_choices %}
+                        <option value="{{value}}">{{title}}</option>
+                    {% endfor %}
+                </select>
+
+                <input class="btn btn-primary mt-2" type="submit" value="Add Review" />
+
+            </form>
+
+        </div>
+    </div>
+  
+  
+<a class="btn btn-primary" href="{% url 'centers:center_employee_view' center.id %}" role="button">Link</a>
+  
+
+{% for employee in employees %}
+<div class="d-flex flex-column gap-1 border border-1 rounded p-4 mt-3">
+    <img src="{{ employee.employee_image.url }}" style="width: 100px" class="rounded-4 object-fit-cover border border-1  " />
+    <h6>{{ employee.employees_names }}</h6>
+
+</div>
+
+{% endfor %}
+
+<h1>This is my Google Maps web page</h1>
+<div class="google-map">
+    <iframe src={{center.location}} width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+
+
+
+
+
+<div class="mb-4">
+    <button type="button" class="button is" onclick="myFunction()">request tour</button>
+    </div>
+    <div id="demo" style="display:none;">
+        <form action="{% url 'centers:center_detail_view' center.id %}" method="post" id="request_form" >
+            {% csrf_token %}
+    
+            <label>Date:</label>
+            <input type="date" name="date" id="date"/><br>
+         
+            <label>Times:</label>
+    
+            <input type="hidden" id="selected_time" name="selected_time" value="">
+    
+            <div class="buttons is">
+                {% for value, title in RequestTour.time_choices %}
+                    <button  data-bs-toggle="modal" data-bs-target="#request_tour" value="{{ value }}" id="button_{{ value }}"class="time_selected button is" type="button"
+                        onclick="selectTime('{{ value }}')">{{ title }}</button>
+                {% endfor %}
+            </div>
+            
+        </form>
+    </div>
+    
+    <div class="modal fade" tabindex="-1" id="request_tour">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Booking Details</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h1>Booking Details</h1>
+                <h6> Name: {{user.first_name}} {{user.last_name}}</h6>
+                <h6> Email: {{user.email}}</h6>
+                <h6> Date:
+                <span id="result"  placeholder="Text Entry." disabled="disabled"></span>
+            </h6>
+                <h6> Time:
+                <span id="timeresult"  placeholder="Text Entry." disabled="disabled"></span>
+                <span>am</span>
+            </h6>
+    
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button  onclick="submit_form()" class="btn btn-primary">confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+    <script type="text/javascript">
+    
+
+    function submit_form() {
+    document.getElementById('request_form').submit();
+    }
+    
+    function myFunction() {
+          document.getElementById("demo").style.display = "";
+        }
+    
+        if ( document.addEventListener ) { 
+        this.addEvent = function(elem, type, fn) {
+            elem.addEventListener(type, fn, false);
+            return fn;
+        };
+    
+        this.removeEvent = function(elem, type, fn) {
+            elem.removeEventListener(type, fn, false);
+        };
+    } else if ( document.attachEvent ) { 
+        this.addEvent = function(elem, type, fn) {
+            var bound = function() {
+                return fn.apply(elem, arguments);
+            };
+            elem.attachEvent("on" + type, bound);
+            return bound;
+        };
+    
+        this.removeEvent = function (elem, type, fn) {
+            elem.detachEvent("on" + type, fn);
+        };
+    }
+    
+    
+    var date_input = document.getElementById('date');
+    date_input.onchange = function(){
+        document.getElementById("result").innerHTML = this.value; 
+    }
+    
+    
+    function selectTime(value) {
+        document.getElementById("selected_time").value = value;
+    
+        var buttons = document.getElementsByClassName("time_selected");
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove("selected");
+        }
+    
+        var timeInput = document.getElementById("button_" + value);
+        timeInput.classList.add("selected");
+        document.getElementById("timeresult").innerHTML =value;
+        
+    }
+    
+        </script>
+
+
+{% endblock %}
+

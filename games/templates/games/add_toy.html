@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+
+{% block title %}  {% endblock %}
+
+
+{% block content %}
+    <div class="row">
+
+        <div class="col">
+            <h2>Adding a toy</h2>
+
+            <form  action="{% url 'games:add_toy_view' %}" method="post" enctype="multipart/form-data" class="d-flex flex-column gap-2">
+                {% csrf_token %} 
+                <label>Title: </label>
+                <input type="text" name="game_name" class="form-control" />
+                
+                <label>Description: </label>
+                <textarea name="game_description" class="form-control"></textarea> 
+
+                <label>game link : </label>
+                <input type="url" name="game_url" class="form-control"></textarea> 
+
+
+                <label>Choose Image: </label>
+                <input type="file" name="game_image" class="form-control"/>
+
+
+                <input type="submit" value="Add game" class="btn btn-primary"/>
+
+            </form>
+
+        </div>
+
+    </div>
+
+{% endblock %}
