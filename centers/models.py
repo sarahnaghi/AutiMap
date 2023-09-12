@@ -12,11 +12,10 @@ class Center(models.Model):
     content = models.TextField()
     city=models.CharField(max_length=128, choices= city_choices )
     image = models.ImageField(upload_to="images/")
-    location = models.URLField()
+    location = models.URLField(max_length=1024)
 
 
     def get_average(self):
-
         return Review.objects.filter(center=self).aggregate(Avg('rating'))["rating__avg"]
 
 

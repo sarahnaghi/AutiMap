@@ -50,14 +50,15 @@ def specialist_register_view(request: HttpRequest):
   if request.method == "POST":
         new_user = User.objects.create_user(first_name=request.POST["first_name"], last_name=request.POST["last_name"], username=request.POST["username"], email=request.POST["email"], password=request.POST["password"], )
         new_user.save()
-        
+        user=User.objects.get(id=new_user.id)
+
         specialist_profile = SpecialistProfile(user=new_user ,major=request.POST["major"],city=request.POST["city"],gender=request.POST["gender"],phone_number = request.POST['phone_number'])
         
         if request.FILES.get('specialist_image',False):
             specialist_profile.specialist_image = request.FILES['specialist_image']
         
         specialist_profile.save()
-        return redirect("accounts:specialist_information_view")
+        return redirect("accounts:specialist_information_view",user.id)
   
   return render(request, "accounts/specialist_register.html" ,{'SpecialistProfile':SpecialistProfile})
 
@@ -83,7 +84,7 @@ def specialist_information_view(request: HttpRequest, user_id):
             user.save()
             
         
-            return redirect("accounts:specialist_profile_view")
+            return redirect("main:home_view")
 
     return render(request, "accounts/specialist_information.html", {'specialist':specialist, 'SpecialistProfile':SpecialistProfile})
 

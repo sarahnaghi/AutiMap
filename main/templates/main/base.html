@@ -10,7 +10,69 @@
     </head>
 
     <body>
-
+        <nav class=" navbar navbar-expand-lg  ">
+            <div class="container-fluid d-flex justify-content-between w-auto">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-lg-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link ms-2" href="#" >About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link ms-2" href="#"  style=>How to Start</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link ms-2" href="#">Having Doubt</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link ms-2" href="#" >Centers</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link ms-2" href="#">Specilist</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link ms-2" href="{% url 'games:all_games_view' %}">Games</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link ms-2" href="contact.html">Contact</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle ms-2" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" >Pages</a>
+                      <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                        {% if request.user.is_superuser %}
+                        <li><a class="dropdown-item" href="#">profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'games:add_game_apps_view'%}">Add Digital Game</a></li>
+                        <li><a class="dropdown-item" href="#">Add Toys</a></li>
+                        <li><a class="dropdown-item" href="#">Add center</a></li>
+                        <li><a class="dropdown-item" href="#">Add specialits</a></li>
+                        {% elif request.user.is_staff %}
+                        <li><a class="dropdown-item" href="{% url 'accounts:specialist_profile_view' request.user.id %}">profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'accounts:specialist_profile_view' request.user.id %}">Reservation</a></li>
+                        {%elif request.user.is_authenticated%}
+                        <li><a class="dropdown-item" href="{% url 'accounts:user_profile' request.user.id %}">Profile</a></li>
+                        {% endif %} 
+    
+    
+                        {%if request.user.is_authenticated%}
+                        <li><a class="dropdown-item" href="{% url 'accounts:logout_view' %}">Log Out</a></li>
+                        {% else %} 
+                        <li><a class="dropdown-item" href="{% url 'accounts:register_user_view' %}">Register</a></li>
+                        <li><a class="dropdown-item" href="{% url 'accounts:login_user_view' %}">Log In</a></li>               
+                        {% endif %} 
+                      </ul>
+                  </li>
+               
+                </ul>
+                
+              </div>
+            </div>
+        </nav>
+    
        
         <div class="container pt-2">
 

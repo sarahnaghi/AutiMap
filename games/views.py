@@ -44,9 +44,7 @@ def all_toys_view(request: HttpRequest):
     return render(request, "games/all_toys.html", {"toys" : toys})
 
 
-def game_view(request: HttpRequest):
-    
-    return render(request, "games/games.html")
+
 
 
 
