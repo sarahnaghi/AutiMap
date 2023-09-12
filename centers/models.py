@@ -47,6 +47,9 @@ class Review(models.Model):
     rating = models.IntegerField(choices= rating_choices)
     content = models.TextField()
 
+    def str(self):
+        return f"{self.center}"
+
 
 
   

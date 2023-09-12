@@ -49,7 +49,7 @@ def center_detail_view(request:HttpRequest, center_id):
 
 
 def success_view(request:HttpRequest):
-    return render(request, 'centers/user_profile.html')
+    return render(request, 'accounts/user_profile.html')
 
 
 def center_employee_view(request:HttpRequest,center_id):
