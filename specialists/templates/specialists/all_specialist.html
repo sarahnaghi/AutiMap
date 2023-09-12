@@ -1,6 +1,7 @@
 {% extends 'main/base.html' %}
 
-{% block title %} all specialist {% endblock %}
+{% block title %} All specialist {% endblock %}
+
 
 {% block content %}
 
@@ -10,21 +11,21 @@
                 <div class="d-flex flex-column gap-3 border border-1 shadow rounded-4 p-4 mt-1  h-100 justify-content-between">
                     <img src="{{ specialist.specialist_image.url }}" class="rounded-4 object-fit-cover border border-1 book-poster" />
                     <h3>{{ specialist.user.first_name }} {{ specialist.user.last_name }}</h3>
-                    <div class="d-flex justify-content-between align-items-center">
+                        <h6> {{specialist.major}} </h6>
                         <h6>{{ specialist.city }}</h6>
-                        <div class="d-flex gap-1 align-items-center">
-                            <h6 class="p-0 m-0"> {{specialist.major}}</h6>
 
-                        </div>
-                        
 
+                    
+                        <a href="{% url 'specialists:detail_specialist_view' specialist.user.id %}" class="d-flex justify-content-between text-decoration-none">
+                    <span class="material-symbols-outlined">More</span>
+                        </a>
+                       
                 </div>
-                <a href="{% url 'specialists:detail_specialist_view' specialist.user.id %}" class="d-flex justify-content-between text-decoration-none">
-                    <span class="material-symbols-outlined"> arrow_forward</span>
-                </a>
+                
             </div>
         
         {% endfor %}
+        </div>
         </div>
 
 {% endblock %}
