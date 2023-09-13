@@ -44,9 +44,7 @@ def all_toys_view(request: HttpRequest):
     return render(request, "games/all_toys.html", {"toys" : toys})
 
 
-def game_view(request: HttpRequest):
-    
-    return render(request, "games/games.html")
+
 
 
 
@@ -64,8 +62,8 @@ def digital_game_update_view(request:HttpRequest, game_id):
             game.game_play_store = request.POST["game_play_store"]
             game.save()
 
-            return redirect("games:all_game_view")
-        return render(request, "games/update_games.html", {"game": game })
+            return redirect("games:all_games_view")
+        return render(request, "games/update_game.html", {"game": game })
 
 
 def digital_game_delete_view(request: HttpRequest,game_id):
@@ -91,7 +89,7 @@ def toy_update_view(request:HttpRequest, toy_id):
             toy.save()
 
             return redirect("games:all_toys_view")
-        return render(request, "games/update_toys.html", {"toy": toy })
+        return render(request, "games/update_toy.html", {"toy": toy })
 
 
 def toy_delete_view(request: HttpRequest,toy_id):

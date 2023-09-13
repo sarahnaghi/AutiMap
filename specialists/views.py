@@ -43,7 +43,7 @@ def appointment_booking_view (request:HttpRequest,specialist_id):
 
 
 def appointment_success_view(request:HttpRequest):
-    return render(request, 'accounts/user_profile.html')
+    return render(request, 'specialists/appointment.html')
 
 
 

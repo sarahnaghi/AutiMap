@@ -1,4 +1,5 @@
 from django.contrib import admin
+from .models import DigitalGame,Toy
 
 from .models import DigitalGame,Toy
 
@@ -20,5 +21,3 @@ class ToyAdmin(admin.ModelAdmin):
 
 admin.site.register(DigitalGame,DigitalGameAdmin)
 admin.site.register(Toy,ToyAdmin)
-
-# Register your models here.

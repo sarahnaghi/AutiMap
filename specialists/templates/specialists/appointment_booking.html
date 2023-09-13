@@ -1,37 +1,43 @@
 
-        {% extends 'main/base.html' %}
+{% extends 'main/base.html' %}
 
 {% block title %} appointment {% endblock %}
 
 
 {% block content %}
-    <div class="row">
 
-        <div class="col">
+    <div class="specialists">
+
+        <div class="form-box">
+
             <h2>Appoinment booking</h2>
 
             <form  action="{% url 'specialists:appointment_booking_view' specialist.user.id%}" method="post" class="d-flex flex-column gap-2" id="request_form">
                 {% csrf_token %} 
             
-        
+                <div class=" text-decoration mt-5">
                 <label>Description: </label>
                 <textarea name="Appointment_description" class="form-control"></textarea> 
+                </div>
 
-
-                <label> choose date </label>
-                <select id="date" name="date" class="form-select">
+                <div class="select">
+              
+                <select id="date" name="date" class="form-select mt-2">
                     {% for value, title in AppointmentBooking.date_choices %}
                         <option value="{{value}}">{{title}}</option>
                     {% endfor %}
                 </select>
+                <label> choose date </label>
+                </div>
 
+                <div class="select">
                 <label>choose time </label>
-                <select  id="select_times" name="select_times" class="form-select">
+                <select  id="select_times" name="select_times" class="form-select mt-2">
                     {% for value, title in AppointmentBooking.times_choices %}
                         <option value="{{value}}">{{title}}</option>
                     {% endfor %}
                 </select>
-
+                </div>
                 <input  data-bs-toggle="modal" data-bs-target="#appointment" value="book appointment" class="btn btn-primary"/>
 
             </form>

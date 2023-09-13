@@ -4,33 +4,67 @@
 {% block title %} New User Registeration {% endblock%}
 
 {% block content %}
-
-        <h2>Register</h2>
-        <div class="row">
-            <div class="col">
+        <div class="row register">
+            <div class="specialist-box">
+                <h2>Specialist Register</h2>
     
                 <form action="{% url 'accounts:specialist_register_view' %}" enctype="multipart/form-data"  method="post" >
                     {% csrf_token %}
-                    <div class="d-flex flex-column gap-3 border border-1 shadow rounded-4 p-4 mt-1  h-100 justify-content-between"> 
-                      
-                        <input type="text" name="first_name" class="form-control mt-2" placeholder="first name" />
-                        <input type="text" name="last_name" class="form-control mt-2" placeholder="last name" />
-                        <input type="text" name="username" class="form-control mt-2" placeholder="username" />
-                        <input type="email" name="email" class="form-control mt-2" placeholder="you@gmail.com" />
-                        <input type="password" name="password" class="form-control mt-2" placeholder="password" />
+                    <div class=" input-box">
+                        <span class="icon"><span class="material-symbols-outlined">person</span></span>
+                        <input type="text" name="first_name" class="form-control mt-2 " />
+                        <label>First Name</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><span class="material-symbols-outlined">person</span></span>
+                        <input type="text" name="last_name" class="form-control mt-2" />
+                        <label>Last Name</label>
+                    </div>
+                    <div class=" input-box">
+                        <span class="icon"><span class="material-symbols-outlined">person</span></span>
+                        <input type="text" name="username" class="form-control mt-2 " />
+                        <label>User Name</label>
+                    </div>
+                    <div class=" input-box">
+                        <span class="icon"><span class="material-symbols-outlined">mail</span></span>
+                        <input type="email" name="email" class="form-control mt-2 " placeholder="you@gmail.com" />
+                        <label>Email</label>
+                    </div>
+                    <div class=" input-box">
+                        <span class="icon"><span class="material-symbols-outlined">lock</span></span>
+                        <input type="password" name="password" class="form-control mt-2 " />
+                        <label>Password</label>
+                    </div>
+                    <div class=" input-box">
                         <input type="text" name="major" class="form-control mt-2" placeholder="Your major" />
-                        <input type="file" name="specialist_image" class="form-control mt-2" placeholder="Your image">
-                        <input type="text" name="city" class="form-control mt-2" placeholder="Your city" />
+                        <label>Major</label>
+                    </div>
+
+                    <div class=" input-box">
+                        <input type="file" name="specialist_image" class="form-control mt-2">
+                        <label>Your image</label>
+                    </div>
+
+                    <div class=" input-box">
+                        <input type="text" name="city" class="form-control mt-2 input-box" placeholder="Your city" />
+                        <label>City</label>
+                    </div>
+                    <div class="input-box">
                         <select name="gender" class="form-select">
                             {% for value, title in SpecialistProfile.gender_choices %}
                                 <option value="{{value}}" {% if gender_choices.gender == value %} selected {% endif%}>{{title}}</option>
                             {% endfor %}
                         </select>
-                        <input type="text"name="phone_number" class="form-control mt-2" placeholder=" phone number " />
-                        
-              
-                        <input type="submit" value="Register" class="btn btn-primary mt-4" />
                     </div>
+                    <div class="input-box">
+                        <input type="text"name="phone_number" class="form-control mt-2 input-box" />
+                        <label>Phone Number</label>
+                    </div>
+                        
+                  
+                        <input type="submit" value="Register" class="btn btn-primary mt-4" />
+               
+                    
     
                 </form>
     

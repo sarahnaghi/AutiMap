@@ -5,7 +5,7 @@ from django.http import HttpRequest,HttpResponse
 from django.contrib.auth.models import User 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from centers .models import RequestTour , Center
+from centers .models import RequestTour , Center , Review
 from specialists .models import AppointmentBooking
 
 
@@ -34,7 +34,6 @@ def login_view(request: HttpRequest):
             msg = "Username or password is no correct. No user found."
 
 
-
     return render(request, "accounts/login.html", {"msg": msg})
 
 
@@ -50,14 +49,15 @@ def specialist_register_view(request: HttpRequest):
   if request.method == "POST":
         new_user = User.objects.create_user(first_name=request.POST["first_name"], last_name=request.POST["last_name"], username=request.POST["username"], email=request.POST["email"], password=request.POST["password"], )
         new_user.save()
-        
+        user=User.objects.get(id=new_user.id)
+
         specialist_profile = SpecialistProfile(user=new_user ,major=request.POST["major"],city=request.POST["city"],gender=request.POST["gender"],phone_number = request.POST['phone_number'])
         
         if request.FILES.get('specialist_image',False):
             specialist_profile.specialist_image = request.FILES['specialist_image']
         
         specialist_profile.save()
-        return redirect("accounts:specialist_information_view")
+        return redirect("accounts:specialist_information_view",user.id)
   
   return render(request, "accounts/specialist_register.html" ,{'SpecialistProfile':SpecialistProfile})
 
@@ -83,7 +83,7 @@ def specialist_information_view(request: HttpRequest, user_id):
             user.save()
             
         
-            return redirect("accounts:specialist_profile_view")
+            return redirect("main:home_view")
 
     return render(request, "accounts/specialist_information.html", {'specialist':specialist, 'SpecialistProfile':SpecialistProfile})
 
@@ -91,21 +91,23 @@ def specialist_information_view(request: HttpRequest, user_id):
 
 
 
-
 def user_profile_view(request: HttpRequest):
- if request.user.is_authenticated:
+ 
+  if request.user.is_authenticated:
+   if not (request.user.is_staff or request.user.is_superuser):
 
-  tours = RequestTour.objects.filter(user=request.user)
-  center = Center.objects.all()
-  appointments = AppointmentBooking.objects.all()
+    Reviews_count=Review.objects.filter(user=request.user).count()
+    tours = RequestTour.objects.filter(user=request.user)
+    center = Center.objects.all()
+    appointments = AppointmentBooking.objects.all()
 
- return render(request, "accounts/user_profile.html", {'tours':tours,'center':center,'appointments':appointments})
+  return render(request, "accounts/user_profile.html", {'tours':tours,'center':center,'appointments':appointments, 'Reviews_count':Reviews_count})
 
 
 def specialist_profile_view(request: HttpRequest):
  if request.user.is_staff:
 
-    specialist = SpecialistProfile.objects.all()
+    specialist = SpecialistProfile.objects.get(user=request.user)
     appointments = AppointmentBooking.objects.filter(user=request.user)
 
     return render(request, "accounts/specialist_profile.html",{'appointments':appointments,'specialist':specialist})
@@ -116,11 +118,13 @@ def admin_profile_view(request: HttpRequest):
  if request.user.is_superuser:
 
     specialist = SpecialistProfile.objects.all()
-    appointments = AppointmentBooking.objects.filter(user=request.user)
+    appointments = AppointmentBooking.objects.all()
     tours = RequestTour.objects.all()
+    reviews=Review.objects.all().count()
 
-    return render(request, "accounts/admin_profile.html",{'appointments':appointments,'specialist':specialist, 'tours':tours})
+ return render(request, "accounts/admin_profile.html",{'appointments':appointments,'specialist':specialist, 'tours':tours,'reviews':reviews})
 
 
 def login_success_view(request: HttpRequest):
-       return render(request, "main/home.html")
+
+    return render(request, "accounts/login_success.html")
