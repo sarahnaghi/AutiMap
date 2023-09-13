@@ -2,30 +2,71 @@
 
 {% block title %} All specialist {% endblock %}
 
-
 {% block content %}
-
+<body class="body1">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 col-lg-8 col-md-10 text-center">
+        <div class="mb-3 mt-5">
+          <h1 style="font-size: 40px; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color: #ff6600; margin-top: 100px;">All Sepeciallists</h1>
+          <p style="color: #ff6600;font-size: 20px; margin-bottom: 100px;">Here you can see all the specialists and you can know them & book an appointment with them!</p>
+        </div>
+      </div>
+    </div>
+    <br>
     <div class="row">
-        {% for specialist in specialists %}
-            <div class="col-4 mt-4">
-                <div class="d-flex flex-column gap-3 border border-1 shadow rounded-4 p-4 mt-1  h-100 justify-content-between">
-                    <img src="{{ specialist.specialist_image.url }}" class="rounded-4 object-fit-cover border border-1 book-poster" />
-                    <h3>{{ specialist.user.first_name }} {{ specialist.user.last_name }}</h3>
-                        <h6> {{specialist.major}} </h6>
-                        <h6>{{ specialist.city }}</h6>
-
-
-                    
-                        <a href="{% url 'specialists:detail_specialist_view' specialist.user.id %}" class="d-flex justify-content-between text-decoration-none">
-                    <span class="material-symbols-outlined">More</span>
-                        </a>
-                       
+    {% for specialist in specialists %}
+      <div class="col-lg-4 col-md-6">
+        <div class="team">
+          <div class="team-avatar ">
+            <img src="{{ specialist.specialist_image.url }}" alt="" >
+          </div>
+          <div class="team-content">
+            <div class=" team-content-inner">
+              <div class="d-flex">
+                <div class="team-info">
+                  <h5 class="mb-0">{{ specialist.user.first_name }} {{ specialist.user.last_name }}</h5>
+                  <span class="team-position">{{specialist.major}} </span>
                 </div>
+                <div class="team-social ml-auto">
+                  <ul class="nav">
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">
+                        <i class="fab fa-facebook-f"></i>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">
+                        <i class="fab fa-instagram"></i>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">
+                        <i class="fab fa-twitter"></i>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">
+                        <i class="fab fa-dribbble"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="team-contact mt-2">
                 
+                  <i class="fas fa-phone fa-flip-horizontal mr-1"></i>
+                  <h6>{{ specialist.city }}</h6> 
+                
+                <a class="text-white d-block" href="{% url 'specialists:detail_specialist_view' specialist.user.id %}">
+                  <i class="far fa-envelope mr-1"></i>
+                  <span class="">Click here For More details!</span>
+                </a>
+              </div>
             </div>
-        
-        {% endfor %}
+          </div>
         </div>
-        </div>
-
+      </div>
+    {% endfor %}
+  </body>
 {% endblock %}

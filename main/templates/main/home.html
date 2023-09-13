@@ -1,54 +1,114 @@
 {% extends 'main/base.html' %}
 
-{% block title %} home {% endblock %}
+{% block title %} {% endblock %}
 
 {% block content %}
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+body{  
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-image:linear-gradient(rgba(179, 175, 175, 0), rgba(0,0,0,9)), url('/static/images/autism.jpg');
+  background-size: cover;
+  background-repeat:no-repeat;
+  background-position:  center;
+}
+  .card{
+  display: flex;
+  color: aliceblue;
+  width: 400px ;
+  height: 300px;
+  position: relative;
+  background: transparent;
+  border:  2px solid rgba(255, 255, 255, .5);
+  border-radius: 20px;
+  backdrop-filter: blur(10px) ;
+  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  justify-content: center;
+  align-items: center;
+  
+  }
+  .family{
+  margin-left: 150px;
+  display: flex;
+  color: aliceblue;
+  width: 800px ;
+  height: 200px;
+  position: relative;
+  background: transparent;
+  border:  2px solid rgba(255, 255, 255, .5);
+  border-radius: 20px;
+  backdrop-filter: blur(10px) ;
+  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  justify-content: center;
+  align-items: center;
+  }
+  .btn{
+    background-color: liner-g;
+    width: 50%;
+    height: 45px;
+    background: #ea772f;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+    font-weight: 500;
+  }
 
-<div class="container">
-  <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
-    <div class="col-lg-6 px-0">
-      <h1 class="display-4 fst-italic">Title of a longer featured blog post</h1>
-      <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
-      <p class="lead mb-0"><a href="{% url 'main:family_journeys' %}" class="text-body-emphasis fw-bold">Continue reading...</a></p>
-    </div>
+  .card:active{
+    transform:scale(0.96);
+  }
+</style>
+
+<div class="row justify-content-center text-light" >
+  <div class="col-6 mb-4 mb-lg-0 texr">
+    <h1 class=" text-center m-5" style="margin-top: 100px;">Welcome To AutiMap</h1>
+    <p class="text-center">If you have atusim person don't wery! the AutiMap web site will provide you the informations that can be used to care for a person with autism, such as the names of centers and specialists who can assist you.</p>
   </div>
-
-  <div class="row mb-2">
-    <div class="col-md-6">
-      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <h3 class="mb-0">Having Doubts?</h3>
-          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-          <a href="{% url 'main:having_doubts_view' %}" class="icon-link gap-1 icon-link-hover stretched-link">
-            Continue reading...
-            <svg class="bi"><use xlink:href="#chevron-right"/></svg>
-          </a>
-        </div>
-        <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <h3 class="mb-0"> How To Start </h3>
-          <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-          <a href="{% url 'main:how_to_start_view' %}" class="icon-link gap-1 icon-link-hover stretched-link">
-            Continue reading...
-            <svg class="bi"><use xlink:href="#chevron-right"/></svg>
-          </a>
-        </div>
-        <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
 </div>
-
- 
-
-{% endblock %}
+<div class="container">
+  <div class="col-sm-6 mb-5 ">
+    <div class="family mt-5">
+      <div class="family-body"> 
+        <h5 class="card-title text-center">Family Journey?</h5>
+        <p class="text-light card-text ms-4">in this page you will see a lot of journeys contains happy memories from families with autism children, click on the button and sail!</p>        <div class="d-flex justify-content-center">
+          <a href="{% url 'main:family_journeys' %}" class="btn  ">More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container ">
+      <div class="row ms-5">
+        <div class="col-sm-6 mb-3 mb-sm-0 ">
+          <div class="card ">
+            <div class="card-body">
+              <h5 class="card-title text-center m-4">How To Start?</h5>
+              <p class="card-text mb-5 mt-5">If you have doubts about your child's autism, click here to read more</p>
+              <div class="d-flex justify-content-center">
+                <a href="{% url 'main:how_to_start_view' %}" class="btn  ">More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 mb-5">
+          <div class="card ">
+            <div class="card-body">
+              <h5 class="card-title text-center m-4">Having Doubts?</h5>
+              <p class="card-text mb-5 mt-5">If you have doubts about your child's autism, click here to read more.</p>
+              <div class="d-flex justify-content-center">
+                <a href="{% url 'main:having_doubts_view' %}" class="btn  ">More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>     
+    
+  {% endblock %}
