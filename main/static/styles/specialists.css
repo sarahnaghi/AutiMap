@@ -53,7 +53,7 @@
 }
 
 .team:hover .team-content-inner {
-    background-color: #ff6600;;
+    background-color:#bf6731;
     color: #ffffff;
     padding: 20px 20px 90px;
     
@@ -180,7 +180,7 @@
   }
   .specialists h2{
       font-size: 2em;
-      color: #eb7024;
+      color: #bf6731;
       text-align: center;
   }
 .select label{
@@ -305,7 +305,7 @@
 }
 .bg-light-gray {
     background-color: #e6e6e6;
-    box-shadow: 5px 5px #ff6600;
+    box-shadow: 5px 5px #bf6731;
 }
 .text-center {
     text-align: center!important;
@@ -338,27 +338,27 @@ img {
 }
 
 .text-orange {
-    color: #ff6600
+    color: #bf6731
 }
 
 .text-green {
-    color: #ff6600
+    color: #bf6731
 }
 
 .text-yellow {
-    color: #ff6600
+    color: #bf6731
 }
 
 .text-pink {
-    color: #ff6600
+    color: #bf6731
 }
 
 .text-purple {
-    color: #ff6600
+    color: #bf6731
 }
 
 .text-lightred {
-    color: #ff6600
+    color: #bf6731
 }
 
 a.text-sky:hover {
@@ -368,7 +368,7 @@ a.text-sky:hover {
 
 a.text-orange:hover {
     opacity: 0.8;
-    color: #e95601
+    color: #bf6731
 }
 
 a.text-green:hover {
@@ -393,7 +393,7 @@ a.text-purple:hover {
 
 a.text-lightred:hover {
     opacity: 0.8;
-    color: #ff5722
+    color: #bf6731
 }
 
 .custom-progress {
@@ -418,7 +418,7 @@ a.text-lightred:hover {
 }
 
 .bg-orange {
-    background-color: #e95601
+    background-color: #bf6731
 }
 
 .bg-green {
@@ -438,5 +438,5 @@ a.text-lightred:hover {
 }
 
 .bg-lightred {
-    background-color: #ff5722
+    background-color: #bf6731
 }

@@ -16,23 +16,6 @@
 
     <body>
        
-<style>
- 
-  .navbar{
-    background: transparent;
-    backdrop-filter: blur(5px) ;
-    background-attachment: fixed; /* Optional - fixes the background in place */
-
-}
-.nav-link{
-    color: #916543;
-}
-.nav-link:hover{
-
-    color: rgb(245, 140, 65);
-    border-radius: 50px;
-}
-</style>
 </head>
 
 <body>
@@ -44,22 +27,22 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-lg-auto">
             <li class="nav-item">
-              <a class="nav-link" href="/">Home</a>
+              <a class="nav-link nav_fontsize " href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link ms-2" href="{% url 'main:how_to_start_view' %}" >How to Start</a>
+              <a class="nav-link ms-2 nav_fontsize" href="{% url 'main:how_to_start_view' %}" >How to Start</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link ms-2" href="{% url 'main:having_doubts_view' %}"  style=>Having Doubt</a>
+              <a class="nav-link ms-2 nav_fontsize" href="{% url 'main:having_doubts_view' %}"  style=>Having Doubt</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link ms-2" href="{% url 'centers:centers_view' %}">Centers</a>
+              <a class="nav-link ms-2 nav_fontsize" href="{% url 'centers:centers_view' %}">Centers</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link ms-2" href="{% url 'specialists:all_specialist_view' %}" >Specialist</a>
+              <a class="nav-link ms-2 nav_fontsize" href="{% url 'specialists:all_specialist_view' %}" >Specialist</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle ms-2" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" >Games</a>
+              <a class="nav-link dropdown-toggle ms-2 nav_fontsize" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" >Games</a>
                 <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
                   <li><a class="dropdown-item" href="{% url 'games:all_games_view' %}">Digital Games</a></li>
                   <li><a class="dropdown-item" href="{% url 'games:all_toys_view'%}">Toys</a></li>
@@ -67,10 +50,10 @@
                 </ul>
           
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle ms-2" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" > 
+              <a class="nav-link dropdown-toggle ms-2 nav_fontsize" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" > 
                 {% if request.user.is_authenticated %}
                 {{ request.user.first_name }} 
-              {% else %} Register {% endif %} </a>
+              {% else %}  Register  {% endif %} </a>
                 <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
                   {% if request.user.is_superuser %}
                   <li><a class="dropdown-item" href="{% url 'accounts:admin_profile_view' %}">profile</a></li>
@@ -78,8 +61,7 @@
                   <li><a class="dropdown-item" href="{% url 'games:add_toy_view'%}">Add Toys</a></li>
                   <li><a class="dropdown-item" href="{% url 'centers:add_center_view' %}">Add center</a></li>
                   {% elif request.user.is_staff %}
-                  <li><a class="dropdown-item" href="{% url 'accounts:specialist_information_view' %}">profile</a></li>
-                  <li><a class="dropdown-item" href="#">Reservation</a></li>
+                  <li><a class="dropdown-item" href="{% url 'accounts:specialist_profile_view' %}">profile</a></li>
                   {%elif request.user.is_authenticated%}
                   <li><a class="dropdown-item" href="{% url 'accounts:user_profile_view' %}">Profile</a></li>
                   {% endif %} 
@@ -88,7 +70,7 @@
                   {%if request.user.is_authenticated%}
                   <li><a class="dropdown-item" href="{% url 'accounts:logout_view' %}">Log Out</a></li>
                   {% else %} 
-                  <li><a class="dropdown-item" href="{% url 'accounts:register_view' %}">Register</a></li>
+                  <li><a class="dropdown-item " href="{% url 'accounts:register_view' %}">Register</a></li>
                   <li><a class="dropdown-item" href="{% url 'accounts:login_view' %}">Log In</a></li>               
                   {% endif %} 
                 </ul>

@@ -8,6 +8,11 @@
     <div class="add-form">
 
         <div class="form-box ">
+            {%if msg%}
+            <div class="alert alert-secondary text-center pb-2 pt-2 rounded-4 text-light" style=" width: 400px; background-color:rgba(96, 206, 96, 0.562) ; border: 2px solid rgb(51, 129, 27); font-size: 20px;" role="alert">
+                {{msg}}
+            </div>
+            {%endif%}
             <h2>Adding a Game</h2>
 
             <form  action="{% url 'games:add_game_apps_view' %}" method="post" enctype="multipart/form-data" class="d-flex flex-column gap-2">

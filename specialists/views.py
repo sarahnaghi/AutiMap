@@ -35,7 +35,7 @@ def appointment_booking_view (request:HttpRequest,specialist_id):
             new_appointment_booking.zoom_url = join_url
             new_appointment_booking.save()
 
-            return redirect('specialists:appointment_success_view',specialist_id=specialist.user.id)
+            return redirect('accounts:user_profile_view')
         
     return render(request, "specialists/appointment_booking.html", {"specialist": specialist, "AppointmentBooking":AppointmentBooking })
     

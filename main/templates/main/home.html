@@ -21,7 +21,7 @@ body{
   .card{
   display: flex;
   color: aliceblue;
-  width: 400px ;
+  width: 500px ;
   height: 300px;
   position: relative;
   background: transparent;
@@ -31,6 +31,8 @@ body{
   box-shadow: 0 0 30px rgba(0, 0, 0, .5);
   justify-content: center;
   align-items: center;
+  font-family: "Times New Roman", Times, serif;
+
   
   }
   .family{
@@ -47,12 +49,14 @@ body{
   box-shadow: 0 0 30px rgba(0, 0, 0, .5);
   justify-content: center;
   align-items: center;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 600;
   }
   .btn{
     background-color: liner-g;
     width: 50%;
     height: 45px;
-    background: #ea772f;
+    background: #ed9862;
     border: none;
     outline: none;
     border-radius: 10px;
@@ -67,18 +71,22 @@ body{
   }
 </style>
 
-<div class="row justify-content-center text-light" >
-  <div class="col-6 mb-4 mb-lg-0 texr">
-    <h1 class=" text-center m-5" style="margin-top: 100px;">Welcome To AutiMap</h1>
-    <p class="text-center">If you have atusim person don't wery! the AutiMap web site will provide you the informations that can be used to care for a person with autism, such as the names of centers and specialists who can assist you.</p>
+<div class="container">
+  <div class="col-sm-6 mb-5 ">
+    <div class="family mt-5">
+      <div class="family-body"> 
+    <h1 class=" text-center m-4 " style="margin-top: 100px; color: rgba(211, 97, 44, 0.907); font-size: 50px;">Welcome To AutiMap!</h1>
+    <p class="text-center p-2" style="margin-top: 10px; font-size: 20px;">If you have an atusim kid don't wery! the AutiMap website will provide you the informations that can be used to care for a person with autism, such as the names of centers and specialists who can assist you.</p>
   </div>
+</div>
+</div>
 </div>
 <div class="container">
   <div class="col-sm-6 mb-5 ">
     <div class="family mt-5">
       <div class="family-body"> 
-        <h5 class="card-title text-center">Family Journey?</h5>
-        <p class="text-light card-text ms-4">in this page you will see a lot of journeys contains happy memories from families with autism children, click on the button and sail!</p>        <div class="d-flex justify-content-center">
+        <h5 class="card-title text-center" style="font-size: 40px; color: rgba(211, 97, 44, 0.907);" >Family Journey</h5>
+        <p class="text-light card-text ms-4 text-center" style="font-size: 20px;">in this page you will see a lot of journeys contains happy memories from families with autism children, click on the button and sail!</p>        <div class="d-flex justify-content-center">
           <a href="{% url 'main:family_journeys' %}" class="btn  ">More</a>
         </div>
       </div>
@@ -88,11 +96,12 @@ body{
 <div class="container ">
       <div class="row ms-5">
         <div class="col-sm-6 mb-3 mb-sm-0 ">
-          <div class="card ">
+          <div class="card">
             <div class="card-body">
-              <h5 class="card-title text-center m-4">How To Start?</h5>
-              <p class="card-text mb-5 mt-5">If you have doubts about your child's autism, click here to read more</p>
-              <div class="d-flex justify-content-center">
+              <h5 class="card-title text-center " style="font-size: 40px; color: rgba(211, 97, 44, 0.907);">How To Start?</h5>
+              <p class="card-text mb-5 mt-5" style="font-size: 20px;">You can find information on how to care for an autistic child if you have no idea how to care of him 
+              </p>
+              <div class="d-flex justify-content-center ">
                 <a href="{% url 'main:how_to_start_view' %}" class="btn  ">More</a>
               </div>
             </div>
@@ -101,8 +110,8 @@ body{
         <div class="col-sm-6 mb-5">
           <div class="card ">
             <div class="card-body">
-              <h5 class="card-title text-center m-4">Having Doubts?</h5>
-              <p class="card-text mb-5 mt-5">If you have doubts about your child's autism, click here to read more.</p>
+              <h5 class="card-title text-center " style="font-size: 40px; color: rgba(211, 97, 44, 0.907);;">Having Doubts?</h5>
+              <p class="card-text mb-5 mt-5"  style="font-size: 20px;" >If you have doubts about your child's autism, click here to read more.</p>
               <div class="d-flex justify-content-center">
                 <a href="{% url 'main:having_doubts_view' %}" class="btn  ">More</a>
               </div>

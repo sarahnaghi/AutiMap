@@ -6,6 +6,11 @@
 
     <div class="wrapper">
         <div class="form-box login">
+            {%if msg%}
+            <div class="alert alert-secondary text-center pb-2 pt-2 rounded-4 text-light" style=" width: 400px; background-color:rgba(214, 62, 62, 0.479) ; border: 2px solid rgb(222, 56, 56); font-size: 20px;" role="alert">
+                {{msg}}
+            </div>
+            {%endif%}
             <h2>Register</h2>
             <form action="{% url 'accounts:register_view' %}" method="post" >
                 {% csrf_token %}
