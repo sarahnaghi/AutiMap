@@ -4,17 +4,21 @@ from django.http import HttpRequest,HttpResponse
 from .models import DigitalGame,Toy
 
 # Create your views here.
-
-
+ 
 def add_game_apps_view(request: HttpRequest):
-
- if request.user.is_superuser:
-
-    if request.method == "POST":
-        new_book = DigitalGame(game_name=request.POST["game_name"], game_image=request.FILES["game_image"], game_description=request.POST["game_description"], game_url_appstore=request.POST["game_url_appstore"],game_play_store=request.POST["game_play_store"])
-        new_book.save()
+    msg = None
+    if request.user.is_superuser:
+       if request.method == "POST":
+        new_game = DigitalGame(game_name=request.POST["game_name"], game_image=request.FILES["game_image"], game_description=request.POST["game_description"], game_url_appstore=request.POST["game_url_appstore"],game_play_store=request.POST["game_play_store"])
+        new_game.save()
         redirect("games/all_games_view")
-    return render(request, 'games/add_digital_game.html')
+        msg = 'The digital game add successfully'
+    else:
+       return render(request,'games/not_authorrized_access.html')
+    
+    return render(request, 'games/add_digital_game.html',{'msg':msg})
+
+
 
 
 def all_games_view(request: HttpRequest):
@@ -25,16 +29,18 @@ def all_games_view(request: HttpRequest):
 
 
 def add_toy_view(request: HttpRequest):
-
- if request.user.is_superuser:
-
-    if request.method == "POST":
+    
+    msg = None
+    if request.user.is_superuser:
+       if request.method == "POST":
         new_toy = Toy(game_name=request.POST["game_name"], game_image=request.FILES["game_image"], game_description=request.POST["game_description"], game_url=request.POST["game_url"])
         new_toy.save()
         redirect("games/all_toys_view")
-
-
-    return render(request, 'games/add_toy.html')
+        msg = 'The toy add successfully'
+    else:
+       return render(request,'games/not_authorrized_access.html')
+       
+    return render(request, 'games/add_toy.html',{'msg':msg})
 
 
 def all_toys_view(request: HttpRequest):
@@ -42,8 +48,6 @@ def all_toys_view(request: HttpRequest):
     toys = Toy.objects.all()
 
     return render(request, "games/all_toys.html", {"toys" : toys})
-
-
 
 
 
@@ -67,12 +71,10 @@ def digital_game_update_view(request:HttpRequest, game_id):
 
 
 def digital_game_delete_view(request: HttpRequest,game_id):
- if request.user.is_superuser:
-
-    game = DigitalGame.objects.get(id= game_id)
-    game.delete()
-
-    return redirect("games:all_game_view")
+    if request.user.is_superuser:
+        game = DigitalGame.objects.get(id= game_id)
+        game.delete()
+        return redirect("games:all_toys_view")
 
 
 def toy_update_view(request:HttpRequest, toy_id):
@@ -93,12 +95,17 @@ def toy_update_view(request:HttpRequest, toy_id):
 
 
 def toy_delete_view(request: HttpRequest,toy_id):
- if request.user.is_superuser:
+    if request.user.is_superuser:
+        toy = Toy.objects.get(id= toy_id)
+        toy.delete()
+        return redirect("games:all_toys_view")
+ 
 
-    toy = Toy.objects.get(id= toy_id)
-    toy.delete()
+ 
 
-    return redirect("games:all_toys_view")
+
+ 
+
 
 
 

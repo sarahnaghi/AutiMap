@@ -17,14 +17,12 @@ def add_center_view(request:HttpRequest):
 
 
 def centers_view(request:HttpRequest):
-
     centers = Center.objects.all()
-
     return render(request, 'centers/centers.html', {'centers': centers, 'Center':Center ,"category_choices": Center.city_choices })
 
+
+
 def center_detail_view(request:HttpRequest, center_id):
-
-
     center = Center.objects.get(id=center_id)
     reviews = Review.objects.filter(center=center)
     avg= Review.objects.filter(center=center).aggregate(Avg('rating'))
@@ -49,21 +47,19 @@ def center_detail_view(request:HttpRequest, center_id):
 
 
 def success_view(request:HttpRequest):
-
-    return render(request, 'centers/success.html')
+   return render(request, 'centers/success.html')
 
 
 
 
 def center_employee_view(request:HttpRequest,center_id):
- center = Center.objects.get(id=center_id)
- 
- if request.method == "POST":
-         employee = CenterEmployee(center=center, employees_names=request.POST["employees_names"],employee_image=request.FILES["employee_image"])
-         employee.save()
-         return redirect("centers:center_detail_view",center_id=center.id)
-
- return render(request,'centers/center_employee.html',{'center': center})
+   center = Center.objects.get(id=center_id)
+   if request.method == "POST":
+        employee = CenterEmployee(center=center, employees_names=request.POST["employees_names"],employee_image=request.FILES["employee_image"])
+        employee.save()
+        return redirect("centers:center_detail_view",center_id=center.id)
+   
+   return render(request,'centers/center_employee.html',{'center': center})
 
 
 def category_view(request:HttpRequest):

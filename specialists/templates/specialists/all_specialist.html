@@ -3,27 +3,36 @@
 {% block title %} All specialist {% endblock %}
 
 {% block content %}
-<body class="body1">
+
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-xl-8 col-lg-8 col-md-10 text-center">
-        <div class="mb-3 mt-5">
-          <h1 style="font-size: 40px; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color: #ff6600; margin-top: 100px;">All Sepeciallists</h1>
-          <p style="color: #ff6600;font-size: 20px; margin-bottom: 100px;">Here you can see all the specialists and you can know them & book an appointment with them!</p>
-        </div>
+    
+    <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+      <div class="container">
+      <div class="timeline-content">
+          <h1 class="title1 text-center"> All Sepeciallists </h1>
+          <br>
+          <br>
+          <br>
+          <h3 class="description1 ">Here you can see all the specialists and you can know them & book an appointment with them!</h3>
+          <br>
+          <br>
+        
       </div>
-    </div>
+      </div>
+
     <br>
     <div class="row">
     {% for specialist in specialists %}
       <div class="col-lg-4 col-md-6">
         <div class="team">
           <div class="team-avatar ">
-            <img src="{{ specialist.specialist_image.url }}" alt="" >
+          <div class="image-container">
+            <img src="{{ specialist.specialist_image.url }}" alt="" style="  box-shadow: 0 0 10px #eb7024; border-radius: 50px;margin: 20px;" >
           </div>
+        </div>
           <div class="team-content">
             <div class=" team-content-inner">
-              <div class="d-flex">
+              <div class="border-radius: 50px;margin: 20px;">
                 <div class="team-info">
                   <h5 class="mb-0">{{ specialist.user.first_name }} {{ specialist.user.last_name }}</h5>
                   <span class="team-position">{{specialist.major}} </span>
@@ -68,5 +77,41 @@
         </div>
       </div>
     {% endfor %}
-  </body>
+
+
+
+ 
+  <style>
+    body{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-image:linear-gradient(rgba(179, 175, 175, 0), rgba(0,0,0,9)), url('/static/images/autism.jpg');
+        background-size: cover;
+        background-repeat:no-repeat;
+        background-position:  center;
+    }
+
+
+        .timeline-content .title{
+        color: #af7549;
+        font-family: "Times New Roman", Times, serif;
+    }
+     .description1{
+        color: #ad6532;
+        font-family: "Times New Roman", Times, serif;
+        text-align: center;
+    }
+
+
+    .title1{
+
+        color: #cf752f;
+        font-family: "Times New Roman", Times, serif;
+
+    }
+</style>
+
+
 {% endblock %}
